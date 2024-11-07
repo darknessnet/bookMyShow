@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-configuration PUBLIC
-"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<!DOCTYPE hibernate-configuration SYSTEM "file:///C:/Users/nitin.jadhav/Documents/workspace-spring-tool-suite-4-4.24.0.RELEASE/ShoppingApplicationWorkspace/BookMyShow/src/main/resources/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/bookmyshow</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">your_password</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="show_sql">true</property>
+        <mapping class="com.yash.bookmyshow.model.Screen"/>
+        <mapping class="com.yash.bookmyshow.model.Movies"/>
+        <mapping class="com.yash.bookmyshow.model.Show"/>
+        <mapping class="com.yash.bookmyshow.model.Theatre"/>
+    </session-factory>
+</hibernate-configuration>
