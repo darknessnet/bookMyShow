@@ -8,7 +8,7 @@
         <title>Home</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <p>This is the homepage!</p>
+        <h1>Hello User!</h1>
+        <p>This is the BookMyShow App!</p>
     </body>
 </html>
