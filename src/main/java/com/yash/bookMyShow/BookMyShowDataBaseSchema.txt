@@ -1,0 +1,104 @@
+CREATE DATABASE BookMyShow;
+USE BookMyShow;
+
+-- Admin Table
+CREATE TABLE Admin (
+    adminId INT PRIMARY KEY AUTO_INCREMENT,
+    adminName VARCHAR(255),
+    adminEmail VARCHAR(255)
+);
+
+-- User Table
+CREATE TABLE User (
+    userId INT PRIMARY KEY AUTO_INCREMENT,
+    userName VARCHAR(255),
+    role VARCHAR(50)
+);
+
+-- Customer Table (References User)
+CREATE TABLE Customer (
+    customerId INT PRIMARY KEY AUTO_INCREMENT,
+    customerName VARCHAR(255),
+    customerEmail VARCHAR(255),
+    customerAddress VARCHAR(255),
+    customerPassword VARCHAR(255),
+    userId INT,
+    FOREIGN KEY (userId) REFERENCES User(userId)
+);
+
+-- Theater Table
+CREATE TABLE Theater (
+    theaterId INT PRIMARY KEY AUTO_INCREMENT,
+    theaterName VARCHAR(255),
+    theaterCity VARCHAR(255)
+);
+
+-- Movies Table
+CREATE TABLE Movies (
+    movieId INT PRIMARY KEY AUTO_INCREMENT,
+    movieName VARCHAR(255),
+    movieHours VARCHAR(50),
+    language VARCHAR(50),
+    description TEXT
+);
+
+-- Screen Table (References Theater)
+CREATE TABLE Screen (
+    screenId INT PRIMARY KEY AUTO_INCREMENT,
+    theaterId INT,
+    screenName VARCHAR(255),
+    `rows` INT,
+    `columns` INT,
+    FOREIGN KEY (theaterId) REFERENCES Theater(theaterId)
+);
+
+-- Seat Table (References Screen)
+CREATE TABLE Seat (
+    seatId INT PRIMARY KEY AUTO_INCREMENT,
+    seatNumber INT,
+    screenId INT,
+    FOREIGN KEY (screenId) REFERENCES Screen(screenId)
+);
+
+-- Show Table (References Movies and Screen)
+CREATE TABLE `Show` (
+    showId INT PRIMARY KEY AUTO_INCREMENT,
+    showStartTime DATE,
+    showEndTime DATE,
+    movieId INT,
+    screenId INT,
+    theaterId INT,
+    FOREIGN KEY (movieId) REFERENCES Movies(movieId),
+    FOREIGN KEY (screenId) REFERENCES Screen(screenId),
+    FOREIGN KEY (theaterId) REFERENCES Theater(theaterId)
+);
+
+-- Ticket Table (References Show)
+CREATE TABLE Ticket (
+    ticketId INT PRIMARY KEY AUTO_INCREMENT,
+    noOfSeats INT,
+    seatNumbers VARCHAR(255),
+    seatAvailable BOOLEAN,
+    ticketStatus BOOLEAN,
+    ticketPrice DOUBLE
+);
+
+-- TicketBooking Table (References Show)
+CREATE TABLE TicketBooking (
+    ticketId INT PRIMARY KEY AUTO_INCREMENT,
+    showId INT,
+    bookingDate DATE,
+    transactionId VARCHAR(255),
+    transactionMode VARCHAR(50),
+    transactionStatus VARCHAR(50),
+    totalCost DOUBLE,
+    FOREIGN KEY (showId) REFERENCES `Show`(showId)
+);
+
+
+Alter Queries
+
+
+Alter Table TicketBooking ADD constraint fk_ticketbooking_ticket foreign key (ticketId)references Ticket(ticketId);
+
+Alter table ticketbooking Add column customerId int,ADD constraint fk_ticketbooking_customer foreign key (customerId)references customer(customerId);
