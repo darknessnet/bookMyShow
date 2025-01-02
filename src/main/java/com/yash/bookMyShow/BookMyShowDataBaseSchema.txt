@@ -5,7 +5,8 @@ USE BookMyShow;
 CREATE TABLE Admin (
     adminId INT PRIMARY KEY AUTO_INCREMENT,
     adminName VARCHAR(255),
-    adminEmail VARCHAR(255)
+    adminEmail VARCHAR(255),
+    adminPassword VARCHAR(255)
 );
 
 -- User Table
@@ -39,7 +40,7 @@ CREATE TABLE Movies (
     movieName VARCHAR(255),
     movieHours VARCHAR(50),
     language VARCHAR(50),
-    description TEXT
+    description VARCHAR(100)
 );
 
 -- Screen Table (References Theater)
@@ -76,11 +77,13 @@ CREATE TABLE `Show` (
 -- Ticket Table (References Show)
 CREATE TABLE Ticket (
     ticketId INT PRIMARY KEY AUTO_INCREMENT,
-    noOfSeats INT,
+    customerId INT,
+    seatCount INT,
     seatNumbers VARCHAR(255),
     seatAvailable BOOLEAN,
     ticketStatus BOOLEAN,
-    ticketPrice DOUBLE
+    ticketPrice DOUBLE,
+    FOREIGN KEY (customerId) REFERENCES Customer(customerId)
 );
 
 -- TicketBooking Table (References Show)
@@ -95,10 +98,6 @@ CREATE TABLE TicketBooking (
     FOREIGN KEY (showId) REFERENCES `Show`(showId)
 );
 
-
-Alter Queries
-
-
 Alter Table TicketBooking ADD constraint fk_ticketbooking_ticket foreign key (ticketId)references Ticket(ticketId);
 
-Alter table ticketbooking Add column customerId int,ADD constraint fk_ticketbooking_customer foreign key (customerId)references customer(customerId);
+Alter Table TicketBooking Add column customerId int,ADD constraint fk_ticketbooking_customer foreign key (customerId)references customer(customerId);

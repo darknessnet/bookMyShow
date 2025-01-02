@@ -53,6 +53,13 @@
             border-color: #FFD700;
             color: white;
         }
+        
+        .seat.booked {
+            background-color: grey;
+            border-color: #005600;
+            color: white;
+            cursor: not-allowed;
+        }
 
         #processBooking {
             display: block;
@@ -112,6 +119,7 @@
 
     <script>
         let selectedSeats = [];
+        const bookedSeats = ${seatNumbers}; 
 
         function toggleSeat(button) {
             const seatNumber = button.innerText;
@@ -145,10 +153,17 @@
                 button.innerText = i;
                 button.onclick = function() { toggleSeat(this); };
                 button.setAttribute('aria-label', `Select seat ${i}`);
+
+                console.log(bookedSeats);
+                if (bookedSeats.includes(i)) {
+                    button.classList.add('booked');
+                    button.disabled = true;
+                }
+
                 seatSelection.appendChild(button);
             }
         }
-
+ 	 		
         createSeatButtons();
     </script>
 </body>

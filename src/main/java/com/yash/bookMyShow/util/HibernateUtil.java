@@ -4,7 +4,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import com.yash.bookMyShow.model.Ticket;
 
-public class TicketUtil {
+public class HibernateUtil {
 
     private static final SessionFactory sessionFactory;
 
@@ -16,7 +16,7 @@ public class TicketUtil {
             configuration.setProperty("hibernate.connection.username", "root");
             configuration.setProperty("hibernate.connection.password", "root");
             configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
-            configuration.setProperty("hibernate.show_sql", "true");
+            configuration.setProperty("hibernate.show_sql", "false");
             configuration.setProperty("hibernate.format_sql", "true");
             configuration.setProperty("hibernate.hbm2ddl.auto", "update");
             configuration.addAnnotatedClass(Ticket.class);

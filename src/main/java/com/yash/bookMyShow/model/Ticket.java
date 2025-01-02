@@ -13,7 +13,9 @@ public class Ticket {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int ticketId;
 	
-	private int noOfSeats;
+	private int customerId;
+	
+	private int seatCount;
 	
 	private String seatNumbers;
 	
@@ -31,12 +33,20 @@ public class Ticket {
 		this.ticketId = ticketId;
 	}
 
-	public int getNoOfSeats() {
-		return noOfSeats;
+	public int getCustomerId() {
+		return customerId;
 	}
 
-	public void setNoOfSeats(int noOfSeats) {
-		this.noOfSeats = noOfSeats;
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
+
+	public int getSeatCount() {
+		return seatCount;
+	}
+
+	public void setSeatCount(int seatCount) {
+		this.seatCount = seatCount;
 	}
 
 	public String getSeatNumbers() {
@@ -76,11 +86,12 @@ public class Ticket {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Ticket(int ticketId, int noOfSeats, String seatNumbers, int seatAvailable, int ticketStatus,
+	public Ticket(int ticketId, int customerId, int seatCount, String seatNumbers, int seatAvailable, int ticketStatus,
 			double ticketPrice) {
 		super();
 		this.ticketId = ticketId;
-		this.noOfSeats = noOfSeats;
+		this.customerId = customerId;
+		this.seatCount = seatCount;
 		this.seatNumbers = seatNumbers;
 		this.seatAvailable = seatAvailable;
 		this.ticketStatus = ticketStatus;
@@ -89,7 +100,7 @@ public class Ticket {
 
 	@Override
 	public String toString() {
-		return "Ticket [ticketId=" + ticketId + ", noOfSeats=" + noOfSeats + ", seatNumbers=" + seatNumbers
+		return "Ticket [ticketId=" + ticketId + ", customerId=" + customerId + ", seatCount=" + seatCount + ", seatNumbers=" + seatNumbers
 				+ ", seatAvailable=" + seatAvailable + ", ticketStatus=" + ticketStatus + ", ticketPrice=" + ticketPrice
 				+ "]";
 	}
